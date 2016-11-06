@@ -118,7 +118,13 @@ config CPU_FREQ_DEFAULT_GOV_ELEMENTALX
 	select CPU_FREQ_GOV_PERFORMANCE
 	help
 	  Use the CPUFreq governor 'elementalx' as default.
-	  
+
+config CPU_FREQ_DEFAULT_GOV_SMARTMAX_EPS
+        bool "smartmax_eps"
+        select CPU_FREQ_GOV_SMARTMAX_EPS
+        help
+          Use the CPUFreq governor 'smartmax eps' as default
+
 config CPU_FREQ_DEFAULT_GOV_INTERACTIVE
 	bool "interactive"
 	select CPU_FREQ_GOV_INTERACTIVE
@@ -249,7 +255,13 @@ config CPU_FREQ_GOV_ZZMOOVE
 	depends on CPU_FREQ
 	help
 	'zzmoove' - a custom governor.
-	
+
+config CPU_FREQ_GOV_SMARTMAX_EPS
+        tristate "'smartmax EPS' cpufreq policy governor"
+        select CPU_FREQ_TABLE
+        help
+        'smartmax EPS' is the extreme powersaving version of smartmax
+
 config CPU_BOOST
 	tristate "Event base short term CPU freq boost"
 	depends on CPU_FREQ
