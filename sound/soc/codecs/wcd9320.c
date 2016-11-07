@@ -4500,6 +4500,15 @@ static int taiko_volatile(struct snd_soc_codec *ssc, unsigned int reg)
 	if (reg == TAIKO_A_RX_HPH_CNP_EN)
 		return 1;
 
+#ifdef CONFIG_SOUND_CONTROL_HAX_3_GPL
+	/* HPH gain registers */
+	if (snd_pa_ctrl_locked) {
+		if (reg == TAIKO_A_RX_HPH_L_GAIN ||
+				reg == TAIKO_A_RX_HPH_R_GAIN)
+			return 1;
+	}
+#endif
+
 	if (reg == TAIKO_A_MBHC_INSERT_DET_STATUS)
 		return 1;
 
