@@ -12,10 +12,6 @@
    like BUG(), printk(), panic() etc. [but let's keep them for now for
    older compilers]
 
-   Early snapshots of gcc 4.3 don't support this and we can't detect this
-   in the preprocessor, but we can live with this because they're unreleased.
-   Maketime probing would be overkill here.
-
    gcc also has a __attribute__((__hot__)) to move hot functions into
    a special section, but I don't see any sense in this right now in
    the kernel context */
@@ -32,10 +28,6 @@
  * Mark a position in code as unreachable.  This can be used to
  * suppress control flow warnings after asm blocks that transfer
  * control elsewhere.
- *
- * Early snapshots of gcc 4.5 don't support this and we can't detect
- * this in the preprocessor, but we can live with this because they're
- * unreleased.  Really, we need to have autoconf for the kernel.
  */
 #define unreachable() __builtin_unreachable()
 
@@ -53,7 +45,6 @@
  *   http://gcc.gnu.org/bugzilla/show_bug.cgi?id=58670
  *
  * Work it around via a compiler barrier quirk suggested by Jakub Jelinek.
- * Fixed in GCC 4.8.2 and later versions.
  *
  * (asm goto is automatically volatile - the naming reflects this.)
  */
@@ -64,3 +55,5 @@
 #define __HAVE_BUILTIN_BSWAP64__
 #define __HAVE_BUILTIN_BSWAP16__
 #endif /* CONFIG_ARCH_USE_BUILTIN_BSWAP */
+
+#define KASAN_ABI_VERSION 4
