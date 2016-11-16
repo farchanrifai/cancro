@@ -3056,7 +3056,18 @@ config KRAIT_REGULATOR
 	 regulators running in ganged mode inside the PMIC. Enable
 	 this option to support such configurations.
 
-endif
+config HAS_MACH_MEMUTILS
+	default n
+	bool "Motorola MSM memcpy enhancements"
+	help
+	Faster memcpy performance for Krait
+
+config FORCE_FAST_CHARGE
+	bool "Force AC charge mode at will"
+	default y
+	help
+	 A simple sysfs interface to force adapters that
+	 are detected as USB to charge as AC.
 
 config KERNEL_TEXT_MPU_PROT
         bool "Enable xpu protection of kernel r/o sections"
@@ -3065,3 +3076,5 @@ config KERNEL_TEXT_MPU_PROT
           sections early in boot. Read access is permitted to
           all masters; Write access is only permited to the
           secure world.
+
+endif
