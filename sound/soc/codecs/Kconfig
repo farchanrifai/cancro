@@ -476,12 +476,13 @@ config SND_SOC_MSM_HDMI_CODEC_RX
 
 config SOUND_CONTROL_HAX_3_GPL		
 	tristate "new wcd93xx sound control hax"		
-	default y		
+	default n		
 	help		
         FauxSound WCD93xx chipset sound control hacks 3.0 for deeper hax
 
 config STWEAKS_CONTROL
 	bool "STweaks for GPL Sound Control 3.x"
 	depends on SOUND_CONTROL_HAX_3_GPL
+	default n
 	help
-	  Whether the GPL Sound Control 3.x will support the STweaks tuning interface.
+	Whether the GPL Sound Control 3.x will support the STweaks tuning interface.
